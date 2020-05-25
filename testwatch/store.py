@@ -38,5 +38,17 @@ def _handle_session_file():
         io.info('Last session file is loaded.')
 
 
+def add_entry(timestamp, entry_type, entry_content):
+    if '\t' in entry_content:
+        io.error(
+            "Tabs are not allowed in entry's content. "
+            "Last entry was not registered."
+        )
+        return
+
+    with open(SESSION_FILE, 'a') as f:
+        f.write(f'{timestamp}\t{entry_type}\t{entry_content}\n')
+
+
 def last_entry():
     return _last_entry
