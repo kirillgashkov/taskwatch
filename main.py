@@ -1,7 +1,9 @@
-from testwatch import io, session
+from testwatch import io, session, store
 
 
 def main():
+    store.init()
+
     if not io.confirm('Shall we begin? [y/n]'):
         return
 
