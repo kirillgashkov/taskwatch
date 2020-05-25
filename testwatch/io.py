@@ -22,3 +22,12 @@ def confirm(prompt):
     if s in {'n', 'no'}:
         return False
     return confirm(prompt)
+
+
+#
+# Output
+#
+
+
+def info(s):
+    print(s)
