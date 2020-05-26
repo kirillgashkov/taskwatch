@@ -35,7 +35,21 @@ def _make_line_from_entry(entry):
 def init():
     if os.path.exists(SESSION_FILE):
         io.info('Session file is detected.')
-        _handle_session_file()
+
+        first_line, last_line = _get_first_and_last_lines(SESSION_FILE)
+
+        if not first_line:
+            return
+
+        first_entry_ = _make_entry_from_line(first_line)
+        last_entry_ = _make_entry_from_line(last_line)
+
+        if last_entry_.type == 'end':
+            _make_session_file_complete(first_entry_)
+            io.info('Complete session file is created.')
+        else:
+            _set_last_entry(last_entry_)
+            io.info('Last session file is loaded.')
 
 
 def _get_first_and_last_lines(file):
@@ -52,23 +66,6 @@ def _get_first_and_last_lines(file):
 def _make_session_file_complete(first_entry):
     complete_session_file = f'{SESSION_FILE}_{first_entry.timestamp}'
     os.rename(SESSION_FILE, complete_session_file)
-
-
-def _handle_session_file():
-    first_line, last_line = _get_first_and_last_lines(SESSION_FILE)
-
-    if not first_line:
-        return
-
-    first_entry_ = _make_entry_from_line(first_line)
-    last_entry_ = _make_entry_from_line(last_line)
-
-    if last_entry_.type == 'end':
-        _make_session_file_complete(first_entry_)
-        io.info('Complete session file is created.')
-    else:
-        _set_last_entry(last_entry_)
-        io.info('Last session file is loaded.')
 
 
 #
