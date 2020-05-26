@@ -6,6 +6,11 @@ from testwatch import io
 SESSION_FILE = '.testwatch_session'
 
 
+#
+# Entry
+#
+
+
 class Entry:
     def __init__(self, timestamp, entry_type, entry_content):
         self.timestamp = timestamp
@@ -18,7 +23,9 @@ def _make_entry_from_line(s):
     return Entry(timestamp, entry_type, entry_content)
 
 
-_last_entry = Entry(-1, '', '')
+#
+# Init
+#
 
 
 def init():
@@ -51,6 +58,11 @@ def _handle_session_file():
         io.info('Last session file is loaded.')
 
 
+#
+# Add entry
+#
+
+
 def add_entry(timestamp, entry_type, entry_content):
     if '\t' in entry_content:
         io.error(
@@ -64,6 +76,14 @@ def add_entry(timestamp, entry_type, entry_content):
 
     global _last_entry
     _last_entry = Entry(timestamp, entry_type, entry_content)
+
+
+#
+# Last entry
+#
+
+
+_last_entry = Entry(-1, '', '')
 
 
 def last_entry():
