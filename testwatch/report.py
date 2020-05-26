@@ -35,9 +35,15 @@ class Report:
         return self.end_time - self.start_time
 
     def time_spent_on_starting(self):
+        if not self.tasks:
+            return 0
+
         return self.tasks[0].start_time - self.start_time
 
     def time_spent_on_ending(self):
+        if not self.tasks:
+            return self.end_time - self.start_time
+
         return self.end_time - self.tasks[-1].end_time
 
     def time_spent_on_tasks(self):
