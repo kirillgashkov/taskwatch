@@ -6,7 +6,19 @@ from testwatch import io
 SESSION_FILE = '.testwatch_session'
 
 
-_last_entry = (-1, '', '')
+class Entry:
+    def __init__(self, timestamp, entry_type, entry_content):
+        self.timestamp = timestamp
+        self.type = entry_type
+        self.content = entry_content
+
+
+def _make_entry_from_line(s):
+    timestamp, entry_type, entry_content = s.split('\t')
+    return Entry(timestamp, entry_type, entry_content)
+
+
+_last_entry = Entry(-1, '', '')
 
 
 def init():
@@ -26,15 +38,16 @@ def _handle_session_file():
     if not first_line:
         return
 
-    first_timestamp, _, _ = first_line.split('\t')
-    last_timestamp, last_type, last_content = last_line.split('\t')
 
-    if last_type == 'end':
-        os.rename(SESSION_FILE, f'{SESSION_FILE}_{first_timestamp}')
+    first_entry = _make_entry_from_line(first_line)
+    last_entry = _make_entry_from_line(last_line)
+
+    if last_entry.type == 'end':
+        os.rename(SESSION_FILE, f'{SESSION_FILE}_{first_entry.timestamp}')
         io.info('Complete session file is created.')
     else:
         global _last_entry
-        _last_entry = (last_timestamp, last_type, last_content)
+        _last_entry = last_entry
         io.info('Last session file is loaded.')
 
 
