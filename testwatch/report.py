@@ -1,3 +1,6 @@
+from testwatch import store
+
+
 #
 # Task
 #
@@ -53,3 +56,30 @@ class Report:
         time -= self.time_spent_on_tasks()
 
         return time
+
+
+def make_report():
+    tasks = list()
+    start_time = -1
+    end_time = -1
+
+    last_time = -1
+
+    for entry in store.entries():
+        if entry.type == 'start':
+            start_time = entry.timestamp
+
+        if entry.type == 'end':
+            end_time = entry.timestamp
+
+        if entry.type == 'amend':
+            task = tasks.pop()
+            last_time = task.start_time
+
+        if entry.type in {'record', 'amend'} and entry.content != 'break':
+            task = _make_task_from_entry(entry, last_time)
+            tasks.append(task)
+
+        last_time = entry.timestamp
+
+    return Report(tasks, start_time, end_time)
