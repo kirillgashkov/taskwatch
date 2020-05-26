@@ -1,5 +1,8 @@
+import datetime
+
+
 #
-# Input
+# Low-level Input
 #
 
 
@@ -25,7 +28,7 @@ def confirm(prompt):
 
 
 #
-# Output
+# Low-level Output
 #
 
 
@@ -35,3 +38,13 @@ def info(s):
 
 def error(s):
     print(s)
+
+
+#
+# Formatters
+#
+
+
+def format_date(unix):
+    fmt = '%Y-%m-%d %H:%M:%S'
+    return datetime.datetime.utcfromtimestamp(unix).strftime(fmt)
