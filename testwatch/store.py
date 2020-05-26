@@ -60,14 +60,14 @@ def _handle_session_file():
     if not first_line:
         return
 
-    first_entry = _make_entry_from_line(first_line)
-    last_entry = _make_entry_from_line(last_line)
+    first_entry_ = _make_entry_from_line(first_line)
+    last_entry_ = _make_entry_from_line(last_line)
 
-    if last_entry.type == 'end':
-        _make_session_file_complete(first_entry)
+    if last_entry_.type == 'end':
+        _make_session_file_complete(first_entry_)
         io.info('Complete session file is created.')
     else:
-        _set_last_entry(last_entry)
+        _set_last_entry(last_entry_)
         io.info('Last session file is loaded.')
 
 
