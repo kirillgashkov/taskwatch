@@ -23,6 +23,10 @@ def _make_entry_from_line(s):
     return Entry(timestamp, entry_type, entry_content)
 
 
+def _make_line_from_entry(entry):
+    return f'{entry.timestamp}\t{entry.type}\t{entry.content}'
+
+
 #
 # Init
 #
@@ -70,10 +74,13 @@ def add_entry(timestamp, entry_type, entry_content):
         )
         return
 
-    with open(SESSION_FILE, 'a') as f:
-        f.write(f'{timestamp}\t{entry_type}\t{entry_content}\n')
+    entry = Entry(timestamp, entry_type, entry_content)
 
-    _set_last_entry(Entry(timestamp, entry_type, entry_content))
+    with open(SESSION_FILE, 'a') as f:
+        line = _make_line_from_entry(entry)
+        f.write(f'{line}\n')
+
+    _set_last_entry(entry)
 
 
 #
