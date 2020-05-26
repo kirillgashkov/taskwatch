@@ -62,6 +62,9 @@ def add_entry(timestamp, entry_type, entry_content):
     with open(SESSION_FILE, 'a') as f:
         f.write(f'{timestamp}\t{entry_type}\t{entry_content}\n')
 
+    global _last_entry
+    _last_entry = Entry(timestamp, entry_type, entry_content)
+
 
 def last_entry():
     return _last_entry
