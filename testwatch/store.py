@@ -38,17 +38,22 @@ def init():
         _handle_session_file()
 
 
-def _handle_session_file():
-    with open(SESSION_FILE) as f:
+def _get_first_and_last_lines(file):
+    with open(file) as f:
         first_line = f.readline().rstrip('\n')
         last_line = first_line
 
         for line in f:
             last_line = line
 
+    return first_line, last_line
+
+
+def _handle_session_file():
+    first_line, last_line = _get_first_and_last_lines(SESSION_FILE)
+
     if not first_line:
         return
-
 
     first_entry = _make_entry_from_line(first_line)
     last_entry = _make_entry_from_line(last_line)
