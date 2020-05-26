@@ -1,6 +1,6 @@
 import os
 
-from testwatch import io
+from testwatch import io, report
 
 
 SESSION_FILE = '.testwatch_session'
@@ -45,11 +45,17 @@ def init():
         last_entry_ = _make_entry_from_line(last_line)
 
         if last_entry_.type == 'end':
-            _make_session_file_complete(first_entry_)
-            io.info('Complete session file is created.')
+            io.info('Last session has ended.')
+
+            if io.confirm('Would you like to see its report and exit? [y/n]'):
+                io.print_report(report.make_report())
+                exit()
+            else:
+                io.info('Archived last session file.')
+                _archive_session_file(first_entry_)
         else:
             _set_last_entry(last_entry_)
-            io.info('Last session file is loaded.')
+            io.info('Loaded last session file.')
 
 
 def _get_first_and_last_lines(file):
@@ -63,9 +69,9 @@ def _get_first_and_last_lines(file):
     return first_line, last_line
 
 
-def _make_session_file_complete(first_entry):
-    complete_session_file = f'{SESSION_FILE}_{first_entry.timestamp}'
-    os.rename(SESSION_FILE, complete_session_file)
+def _archive_session_file(first_entry):
+    archived_session_file = f'{SESSION_FILE}_{first_entry.timestamp}'
+    os.rename(SESSION_FILE, archived_session_file)
 
 
 #
