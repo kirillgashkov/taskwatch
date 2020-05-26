@@ -105,3 +105,14 @@ def last_entry():
 def _set_last_entry(entry):
     global _last_entry
     _last_entry = entry
+
+
+#
+# Entries
+#
+
+
+def entries():
+    with open(SESSION_FILE) as f:
+        for line in f:
+            yield _make_entry_from_line(line)

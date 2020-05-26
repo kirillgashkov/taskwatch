@@ -1,4 +1,4 @@
-from testwatch import io, session, store
+from testwatch import io, session, store, report
 
 
 def main():
@@ -18,6 +18,8 @@ def main():
         session.write(s)
 
     session.end()
+
+    io.print_report(report.make_report())
 
 
 if __name__ == '__main__':
