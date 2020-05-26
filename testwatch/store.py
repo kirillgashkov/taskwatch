@@ -53,8 +53,7 @@ def _handle_session_file():
         os.rename(SESSION_FILE, f'{SESSION_FILE}_{first_entry.timestamp}')
         io.info('Complete session file is created.')
     else:
-        global _last_entry
-        _last_entry = last_entry
+        _set_last_entry(last_entry)
         io.info('Last session file is loaded.')
 
 
@@ -74,8 +73,7 @@ def add_entry(timestamp, entry_type, entry_content):
     with open(SESSION_FILE, 'a') as f:
         f.write(f'{timestamp}\t{entry_type}\t{entry_content}\n')
 
-    global _last_entry
-    _last_entry = Entry(timestamp, entry_type, entry_content)
+    _set_last_entry(Entry(timestamp, entry_type, entry_content))
 
 
 #
@@ -88,3 +86,8 @@ _last_entry = Entry(-1, '', '')
 
 def last_entry():
     return _last_entry
+
+
+def _set_last_entry(entry):
+    global _last_entry
+    _last_entry = entry
