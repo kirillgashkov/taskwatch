@@ -41,6 +41,28 @@ def error(s):
 
 
 #
+# High-level Output
+#
+
+
+def print_report(report):
+    print(f'Testwatch Session Report')
+    print(f'    Start time (UTC): {format_date(report.start_time)}')
+    print(f'    End time (UTC): {format_date(report.end_time)}')
+    print(f'    ---')
+
+    for task in report.tasks:
+        print(f'    {task.name}: {format_time(task.duration())}')
+
+    print(f'    ---')
+    print(f'    Total time spent: {format_time(report.total_time_spent())}')
+    print(f'    Time spent on starting: {format_time(report.time_spent_on_starting())}')
+    print(f'    Time spent on ending: {format_time(report.time_spent_on_ending())}')
+    print(f'    Time spent on tasks: {format_time(report.time_spent_on_tasks())}')
+    print(f'    Time spent on breaks: {format_time(report.time_spent_on_breaks())}')
+
+
+#
 # Formatters
 #
 
