@@ -49,6 +49,11 @@ def _get_first_and_last_lines(file):
     return first_line, last_line
 
 
+def _make_session_file_complete(first_entry):
+    complete_session_file = f'{SESSION_FILE}_{first_entry.timestamp}'
+    os.rename(SESSION_FILE, complete_session_file)
+
+
 def _handle_session_file():
     first_line, last_line = _get_first_and_last_lines(SESSION_FILE)
 
@@ -59,7 +64,7 @@ def _handle_session_file():
     last_entry = _make_entry_from_line(last_line)
 
     if last_entry.type == 'end':
-        os.rename(SESSION_FILE, f'{SESSION_FILE}_{first_entry.timestamp}')
+        _make_session_file_complete(first_entry)
         io.info('Complete session file is created.')
     else:
         _set_last_entry(last_entry)
