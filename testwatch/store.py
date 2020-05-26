@@ -6,6 +6,13 @@ from testwatch import io
 SESSION_FILE = '.testwatch_session'
 
 
+class Entry:
+    def __init__(self, timestamp, entry_type, entry_content):
+        self.timestamp = timestamp
+        self.type = entry_type
+        self.content = entry_content
+
+
 _last_entry = (-1, '', '')
 
 
