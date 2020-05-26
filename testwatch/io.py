@@ -32,6 +32,10 @@ def confirm(prompt):
 #
 
 
+def raw(s):
+    print(s)
+
+
 def info(s):
     print(s)
 
