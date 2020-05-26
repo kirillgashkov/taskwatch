@@ -20,7 +20,7 @@ class Entry:
 
 def _make_entry_from_line(s):
     timestamp, entry_type, entry_content = s.split('\t')
-    return Entry(timestamp, entry_type, entry_content)
+    return Entry(int(timestamp), entry_type, entry_content.strip())
 
 
 def _make_line_from_entry(entry):
