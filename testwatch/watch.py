@@ -9,4 +9,4 @@ def current_time():
 
 
 def last_time():
-    return store.last_entry()[0]
+    return store.last_entry().timestamp

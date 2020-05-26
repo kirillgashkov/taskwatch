@@ -13,7 +13,7 @@ class Entry:
         self.content = entry_content
 
 
-_last_entry = (-1, '', '')
+_last_entry = Entry(-1, '', '')
 
 
 def init():
@@ -41,7 +41,7 @@ def _handle_session_file():
         io.info('Complete session file is created.')
     else:
         global _last_entry
-        _last_entry = (last_timestamp, last_type, last_content)
+        _last_entry = Entry(last_timestamp, last_type, last_content)
         io.info('Last session file is loaded.')
 
 
