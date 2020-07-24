@@ -1,4 +1,4 @@
-# testwatch
+# Testwatch
 
 A stopwatch for tests.
 
