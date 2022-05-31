@@ -1,4 +1,5 @@
 from testwatch import store
+from testwatch.store import Entry
 
 #
 # Task
@@ -6,16 +7,16 @@ from testwatch import store
 
 
 class Task:
-    def __init__(self, name, start_time, end_time):
+    def __init__(self, name: str, start_time: int, end_time: int) -> None:
         self.name = name
         self.start_time = start_time
         self.end_time = end_time
 
-    def duration(self):
+    def duration(self) -> int:
         return self.end_time - self.start_time
 
 
-def _make_task_from_entry(entry, task_start):
+def _make_task_from_entry(entry: Entry, task_start: int) -> Task:
     return Task(entry.content, task_start, entry.timestamp)
 
 
@@ -25,27 +26,27 @@ def _make_task_from_entry(entry, task_start):
 
 
 class Report:
-    def __init__(self, tasks, start_time, end_time):
+    def __init__(self, tasks: list[Task], start_time: int, end_time: int) -> None:
         self.tasks = tasks
         self.start_time = start_time
         self.end_time = end_time
 
-    def total_time_spent(self):
+    def total_time_spent(self) -> int:
         return self.end_time - self.start_time
 
-    def time_spent_on_starting(self):
+    def time_spent_on_starting(self) -> int:
         if not self.tasks:
             return 0
 
         return self.tasks[0].start_time - self.start_time
 
-    def time_spent_on_ending(self):
+    def time_spent_on_ending(self) -> int:
         if not self.tasks:
             return self.end_time - self.start_time
 
         return self.end_time - self.tasks[-1].end_time
 
-    def time_spent_on_tasks(self):
+    def time_spent_on_tasks(self) -> int:
         time = 0
 
         for task in self.tasks:
@@ -53,7 +54,7 @@ class Report:
 
         return time
 
-    def time_spent_on_breaks(self):
+    def time_spent_on_breaks(self) -> int:
         time = self.total_time_spent()
 
         time -= self.time_spent_on_starting()
@@ -63,8 +64,8 @@ class Report:
         return time
 
 
-def make_report():
-    tasks = list()
+def make_report() -> Report:
+    tasks: list[Task] = []
     start_time = -1
     end_time = -1
 

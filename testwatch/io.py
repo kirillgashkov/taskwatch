@@ -1,25 +1,26 @@
 import datetime
 
 from testwatch import export
+from testwatch.report import Report
 
 #
 # Low-level Input
 #
 
 
-def readline():
+def readline() -> str:
     s = input(">>> ").strip()
     return s or readline()
 
 
-def ask(prompt):
+def ask(prompt: str) -> str:
     if prompt:
         print(prompt)
     s = readline().strip()
     return s
 
 
-def confirm(prompt):
+def confirm(prompt: str) -> bool:
     s = ask(prompt).lower()
     if s in {"y", "yes"}:
         return True
@@ -33,15 +34,15 @@ def confirm(prompt):
 #
 
 
-def raw(s):
+def raw(s: str) -> None:
     print(s)
 
 
-def info(s):
+def info(s: str) -> None:
     print(s)
 
 
-def error(s):
+def error(s: str) -> None:
     print(s)
 
 
@@ -50,7 +51,7 @@ def error(s):
 #
 
 
-def print_report(report):
+def print_report(report: Report) -> None:
     print(f"[Human readable report]")
     print(f"")
     print(f"Start time (UTC): {format_date(report.start_time)}")
@@ -78,7 +79,7 @@ def print_report(report):
 #
 
 
-def format_time(seconds):
+def format_time(seconds: int) -> str:
     m, s = divmod(seconds, 60)
     h, m = divmod(m, 60)
 
@@ -89,6 +90,6 @@ def format_time(seconds):
     return h_str + m_str + s_str
 
 
-def format_date(unix):
+def format_date(unix: int) -> str:
     fmt = "%Y-%m-%d %H:%M:%S"
     return datetime.datetime.utcfromtimestamp(unix).strftime(fmt)
