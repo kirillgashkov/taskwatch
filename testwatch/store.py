@@ -12,7 +12,7 @@ SESSION_FILE = ".testwatch_session"
 
 
 class Entry:
-    def __init__(self, timestamp: int, entry_type: str, entry_content: str):
+    def __init__(self, timestamp: int, entry_type: str, entry_content: str) -> None:
         self.timestamp = timestamp
         self.type = entry_type
         self.content = entry_content
@@ -79,7 +79,7 @@ def _archive_session_file(first_entry: Entry) -> None:
 #
 
 
-def add_entry(timestamp: int, entry_type: str, entry_content: str):
+def add_entry(timestamp: int, entry_type: str, entry_content: str) -> None:
     if "\t" in entry_content:
         io.error(
             "Tabs are not allowed in entry's content. Last entry was not registered."

@@ -26,7 +26,7 @@ def _make_task_from_entry(entry: Entry, task_start: int) -> Task:
 
 
 class Report:
-    def __init__(self, tasks: list[Task], start_time: int, end_time: int):
+    def __init__(self, tasks: list[Task], start_time: int, end_time: int) -> None:
         self.tasks = tasks
         self.start_time = start_time
         self.end_time = end_time
