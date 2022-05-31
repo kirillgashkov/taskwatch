@@ -1,4 +1,5 @@
 import os
+from collections.abc import Iterable
 
 from testwatch import io, report
 
@@ -11,18 +12,18 @@ SESSION_FILE = ".testwatch_session"
 
 
 class Entry:
-    def __init__(self, timestamp, entry_type, entry_content):
+    def __init__(self, timestamp: int, entry_type: str, entry_content: str):
         self.timestamp = timestamp
         self.type = entry_type
         self.content = entry_content
 
 
-def _make_entry_from_line(s):
+def _make_entry_from_line(s: str) -> Entry:
     timestamp, entry_type, entry_content = s.split("\t")
     return Entry(int(timestamp), entry_type, entry_content.strip())
 
 
-def _make_line_from_entry(entry):
+def _make_line_from_entry(entry: Entry) -> str:
     return f"{entry.timestamp}\t{entry.type}\t{entry.content}"
 
 
@@ -31,7 +32,7 @@ def _make_line_from_entry(entry):
 #
 
 
-def init():
+def init() -> None:
     if os.path.exists(SESSION_FILE):
         io.info("Session file is detected.")
 
@@ -57,7 +58,7 @@ def init():
             io.info("Loaded last session file.")
 
 
-def _get_first_and_last_lines(file):
+def _get_first_and_last_lines(file: str) -> tuple[str, str]:
     with open(file) as f:
         first_line = f.readline().rstrip("\n")
         last_line = first_line
@@ -68,7 +69,7 @@ def _get_first_and_last_lines(file):
     return first_line, last_line
 
 
-def _archive_session_file(first_entry):
+def _archive_session_file(first_entry: Entry) -> None:
     archived_session_file = f"{SESSION_FILE}_{first_entry.timestamp}"
     os.rename(SESSION_FILE, archived_session_file)
 
@@ -78,10 +79,10 @@ def _archive_session_file(first_entry):
 #
 
 
-def add_entry(timestamp, entry_type, entry_content):
+def add_entry(timestamp: int, entry_type: str, entry_content: str):
     if "\t" in entry_content:
         io.error(
-            "Tabs are not allowed in entry's content. " "Last entry was not registered."
+            "Tabs are not allowed in entry's content. Last entry was not registered."
         )
         return
 
@@ -102,11 +103,11 @@ def add_entry(timestamp, entry_type, entry_content):
 _last_entry = Entry(-1, "", "")
 
 
-def last_entry():
+def last_entry() -> Entry:
     return _last_entry
 
 
-def _set_last_entry(entry):
+def _set_last_entry(entry: Entry) -> None:
     global _last_entry
     _last_entry = entry
 
@@ -116,7 +117,7 @@ def _set_last_entry(entry):
 #
 
 
-def entries():
+def entries() -> Iterable[Entry]:
     with open(SESSION_FILE) as f:
         for line in f:
             yield _make_entry_from_line(line)
