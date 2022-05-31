@@ -1,7 +1,7 @@
 from testwatch import io, report, session, store
 
 
-def main():
+def main() -> None:
     store.init()
 
     if not io.confirm("Shall we begin? [y/n]"):
