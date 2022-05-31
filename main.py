@@ -1,10 +1,10 @@
-from testwatch import io, session, store, report
+from testwatch import io, report, session, store
 
 
 def main():
     store.init()
 
-    if not io.confirm('Shall we begin? [y/n]'):
+    if not io.confirm("Shall we begin? [y/n]"):
         return
 
     session.start()
@@ -12,7 +12,7 @@ def main():
     while True:
         s = io.readline()
 
-        if s == 'end':
+        if s == "end":
             break
 
         session.write(s)
@@ -22,5 +22,5 @@ def main():
     io.print_report(report.make_report())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
