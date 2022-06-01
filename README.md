@@ -4,11 +4,11 @@ A stopwatch for tests.
 
 ## Requirements
 
-- Python 3
+- Python 3.10
 
 ## Installation
 
-```bash
+```sh
 $ git clone git@github.com:kirillgashkov/testwatch.git
 ```
 
@@ -18,7 +18,7 @@ This is an interactive program. Run these commands to start interacting.
 
 ```bash
 $ cd testwatch
-$ python3 main.py
+$ python -m testwatch
 ```
 
 ### Example
@@ -59,9 +59,9 @@ Note that there are a couple of special lines:
 ### What is a session report?
 
 When your session is ended, you are presented its report (aka summary) in two
-forms: human readable and computer readable.
+forms: human-readable and computer readable.
 
-Human readable report makes it easy to see how much time you spent on this test,
+Human-readable report makes it easy to see how much time you spent on this test,
 on breaks and on each individual task.
 
 Computer readable report makes it easy to parse and process the data. Each line
@@ -77,7 +77,7 @@ this file in any editor (since they might trim the whitespaces).
 
 It is one of your archived sessions. `<DIGITS>` represents the unix time when
 this session was started. If you want to see this session's report, rename it to
-`.testwatch_session`, run the `main.py` file and follow instructions. 
+`.testwatch_session`, run the program and follow instructions. 
 
 ## License
 
