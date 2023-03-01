@@ -5,6 +5,9 @@ description = ""
 authors = ["Kirill Gashkov <kirill@gashkov.com>"]
 readme = "README.md"
 
+[tool.poetry.scripts]
+taskwatch = "taskwatch.__main__:main"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 
