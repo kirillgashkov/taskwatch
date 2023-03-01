@@ -1,5 +1,5 @@
-from testwatch import store
-from testwatch.store import Entry
+from taskwatch import store
+from taskwatch.store import Entry
 
 #
 # Task
@@ -70,7 +70,6 @@ def make_report() -> Report:
     end_time = -1
 
     last_time = -1
-
     for entry in store.entries():
         if entry.type == "start":
             start_time = entry.timestamp

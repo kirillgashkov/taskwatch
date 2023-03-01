@@ -3,14 +3,15 @@ lock:
 .PHONY: lock
 
 lint:
-	poetry run autoflake --check -i -r --remove-all-unused-imports .
-	poetry run isort --check --atomic .
-	poetry run black --check .
-	poetry run mypy .
+	autoflake --check --in-place --recursive --remove-all-unused-imports .
+	isort --check --atomic .
+	black --check .
+	mypy .
 .PHONY: lint
 
 fmt:
-	poetry run autoflake -i -r --remove-all-unused-imports .
-	poetry run isort --atomic .
-	poetry run black .
+	autoflake --in-place --recursive --remove-all-unused-imports .
+	isort --atomic .
+	black .
+	mypy .
 .PHONY: fmt

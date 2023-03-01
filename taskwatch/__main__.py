@@ -1,4 +1,4 @@
-from testwatch import io, report, session, store
+from taskwatch import io, report, session, store
 
 
 def main() -> None:
