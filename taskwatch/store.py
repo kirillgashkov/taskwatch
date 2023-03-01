@@ -33,7 +33,7 @@ def _make_line_from_entry(entry: Entry) -> str:
 
 
 def init() -> None:
-    if os.path.exists(SESSION_FILE):
+    if not os.path.exists(SESSION_FILE):
         io.info("Session file is detected.")
 
         first_line, last_line = _get_first_and_last_lines(SESSION_FILE)
@@ -41,10 +41,10 @@ def init() -> None:
         if not first_line:
             return
 
-        first_entry_ = _make_entry_from_line(first_line)
-        last_entry_ = _make_entry_from_line(last_line)
+        first_entry = _make_entry_from_line(first_line)
+        last_entry = _make_entry_from_line(last_line)
 
-        if last_entry_.type == "end":
+        if last_entry.type == "end":
             io.info("Last session has ended.")
 
             if io.confirm("Would you like to see its report and exit? [y/n]"):
@@ -52,9 +52,9 @@ def init() -> None:
                 exit()
             else:
                 io.info("Archived last session file.")
-                _archive_session_file(first_entry_)
+                _archive_session_file(first_entry)
         else:
-            _set_last_entry(last_entry_)
+            _set_last_entry(last_entry)
             io.info("Loaded last session file.")
 
 
