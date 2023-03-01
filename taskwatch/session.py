@@ -11,14 +11,6 @@ def end() -> None:
 
 def write(s: str) -> None:
     if s.startswith("*") or s.endswith("*"):
-        _amend(s.strip("*").strip())
+        store.add_entry(watch.current_time(), "record", s)
     else:
-        _record(s)
-
-
-def _record(s: str) -> None:
-    store.add_entry(watch.current_time(), "record", s)
-
-
-def _amend(s: str) -> None:
-    store.add_entry(watch.current_time(), "amend", s)
+        store.add_entry(watch.current_time(), "amend", s)
