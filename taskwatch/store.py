@@ -33,7 +33,7 @@ def _make_line_from_entry(entry: Entry) -> str:
 
 
 def init() -> None:
-    if not os.path.exists(SESSION_FILE):
+    if os.path.exists(SESSION_FILE):
         io.info("Session file is detected.")
 
         first_line, last_line = _get_first_and_last_lines(SESSION_FILE)
