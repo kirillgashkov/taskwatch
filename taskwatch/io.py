@@ -3,8 +3,9 @@ import datetime
 from taskwatch import export
 from taskwatch.report import Report
 
+
 #
-# Low-level Input
+# Low-level input
 #
 
 
@@ -30,7 +31,7 @@ def confirm(prompt: str) -> bool:
 
 
 #
-# Low-level Output
+# Low-level output
 #
 
 
@@ -47,7 +48,7 @@ def error(s: str) -> None:
 
 
 #
-# High-level Output
+# High-level output
 #
 
 
@@ -75,7 +76,7 @@ def print_report(report: Report) -> None:
 
 
 #
-# Formatters
+# Formatting
 #
 
 
