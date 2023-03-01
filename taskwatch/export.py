@@ -1,4 +1,4 @@
-from testwatch.report import Report
+from taskwatch.report import Report
 
 
 def report_to_tsv(report: Report) -> str:

@@ -1,5 +1,5 @@
-from testwatch import store
-from testwatch.store import Entry
+from taskwatch import store
+from taskwatch.store import Entry
 
 #
 # Task

@@ -1,7 +1,7 @@
 import datetime
 
-from testwatch import export
-from testwatch.report import Report
+from taskwatch import export
+from taskwatch.report import Report
 
 #
 # Low-level Input

@@ -1,4 +1,4 @@
-from testwatch import store, watch
+from taskwatch import store, watch
 
 
 def start() -> None:

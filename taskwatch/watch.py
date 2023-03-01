@@ -1,7 +1,7 @@
 import math
 import time
 
-from testwatch import store
+from taskwatch import store
 
 
 def current_time() -> int:

@@ -1,9 +1,9 @@
 import os
 from collections.abc import Iterable
 
-from testwatch import io, report
+from taskwatch import io, report
 
-SESSION_FILE = ".testwatch_session"
+SESSION_FILE = ".taskwatch_session"
 
 
 #

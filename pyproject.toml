@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "testwatch"
+name = "taskwatch"
 version = "0.1.0"
 description = ""
 authors = ["Kirill Gashkov <kirill@gashkov.com>"]
@@ -15,7 +15,7 @@ mypy = "^0.960"
 
 [tool.isort]
 profile = "black"
-known_first_party = ["testwatch"]
+known_first_party = ["taskwatch"]
 
 [tool.mypy]
 disallow_any_generics = true
