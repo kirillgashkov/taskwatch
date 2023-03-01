@@ -3,7 +3,6 @@ import datetime
 from taskwatch import export
 from taskwatch.report import Report
 
-
 #
 # Low-level input
 #

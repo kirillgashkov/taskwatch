@@ -1,7 +1,6 @@
 from taskwatch import store
 from taskwatch.store import Entry
 
-
 #
 # Task
 #
