@@ -47,7 +47,7 @@ Note that there are a couple of special lines:
 - A line with text "break".
     - Send it to tell `taskwatch` not to take into account the time that passed
       since the last entry. This may be useful when you want to take a break
-      from the test and do other things.
+      from tasks and do other things.
 - A line that starts with or ends with asterisks (\*).
     - Send it to amend the last entry. Basically, it overrides its timestamp and
       label with the current ones (asterisks are stripped).
@@ -61,8 +61,7 @@ Note that there are a couple of special lines:
 When your session is ended, you are presented its report (aka summary) in two
 forms: human-readable and computer readable.
 
-Human-readable report makes it easy to see how much time you spent on this test,
-on breaks and on each individual task.
+Human-readable report makes it easy to see how much time you've spent on tasks.
 
 Computer readable report makes it easy to parse and process the data. Each line
 of the computer readable report represents an event with a label, unix start
