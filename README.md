@@ -10,6 +10,8 @@ A stopwatch for tasks.
 
 ```sh
 $ git clone git@github.com:kirillgashkov/taskwatch.git
+$ cd taskwatch
+$ pip install .
 ```
 
 ## Usage
@@ -17,8 +19,7 @@ $ git clone git@github.com:kirillgashkov/taskwatch.git
 This is an interactive program. Run these commands to start interacting.
 
 ```bash
-$ cd taskwatch
-$ python -m taskwatch
+$ taskwatch
 ```
 
 ### Example
