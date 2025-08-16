@@ -9,9 +9,7 @@ A stopwatch for tasks.
 ## Installation
 
 ```sh
-$ git clone git@github.com:kirillgashkov/taskwatch.git
-$ cd taskwatch
-$ pip install .
+$ pip install git+https://github.com/kirillgashkov/taskwatch.git
 ```
 
 ## Usage
